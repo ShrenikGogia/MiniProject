@@ -1,0 +1,411 @@
+#include <stdlib.h>     //Header Files
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <wctype.h>
+void billingsystem();       //Function Prototype
+struct bill  //Structure to store the details of the bill
+{
+    char customername[50];
+    char commodity[30];
+    long phoneno;
+    long customerid;
+    int consumed;
+    int bill;
+};
+
+
+int main()
+{
+    int seccode;     //int variable to store the security code 
+    char username[100];   //string to store the name of the user(employee)
+    int arrSec[10]={9982,7407,4200,9211,6703,8892,6060,2321,6969,1140}; //array which has all security codes of employees stored indexwise, this array cross checks if the security code entered matches with the employee name 
+    printf("------------------------------------------------------\n");
+    printf("------ Welcome to the Unified Billing Interface ------\n");
+    printf("------------------------------------------------------\n");
+    printf("Please enter your first name\n");
+    scanf("%s",username);
+    printf("Please enter your security code\n");
+    scanf("%d",&seccode);
+   
+    //security check
+    if((strcmp(username,"Shantha")==0) || (strcmp(username,"shantha"))==0)
+    {
+    if(seccode==arrSec[0])
+    { //If the security check passes, this output is generated, and control goes to the billing function
+    printf("***** Welcome Shantha Ma'am *****\n");
+    billingsystem();     //Billing function is being called
+    }
+    else  //if incorrect username or security code is entered, access is not granted
+    printf("Incorrect username/security code entered\n");
+    }
+    else if((strcmp(username,"Vishnu")==0) || (strcmp(username,"vishnu"))==0)
+    {
+    if(seccode==arrSec[1])
+    {
+    printf("***** Welcome Vishnu *****\n");
+    billingsystem();
+    }
+    else
+    printf("Incorrect username/security code entered\n");
+    }
+    else if((strcmp(username,"Shrenik")==0) || (strcmp(username,"shrenik"))==0)
+    {
+    if(seccode==arrSec[2])
+    {
+    printf("***** Welcome Shrenik *****\n");
+    billingsystem();
+    }
+    else
+    printf("Incorrect username/security code entered\n");
+    }
+    else if((strcmp(username,"Dhawal")==0) || (strcmp(username,"dhawal"))==0)
+    {
+    if(seccode==arrSec[3])
+    {
+    printf("***** Welcome Dhawal *****\n");
+    billingsystem();
+    }
+    else
+    printf("Incorrect username/security code entered\n");
+    }
+    else if((strcmp(username,"Sharon")==0) || (strcmp(username,"sharon"))==0)
+    {
+    if(seccode==arrSec[4])
+    {
+    printf("***** Welcome Sharon *****\n");
+    billingsystem();
+    }
+    else
+    printf("Incorrect username/security code entered\n");
+    }
+    else if((strcmp(username,"Shaheer")==0) || (strcmp(username,"shaheer"))==0)
+    {
+    if(seccode==arrSec[5])
+    {
+    printf("***** Welcome Shaheer *****\n");
+    billingsystem();
+    }
+    else
+    printf("Incorrect username/security code entered\n");
+    }
+    else if((strcmp(username,"Aditi")==0) || (strcmp(username,"aditi"))==0)
+    {
+    if(seccode==arrSec[6])
+    {
+    printf("***** Welcome Aditi *****\n");
+    billingsystem();
+    }
+    else
+    printf("Incorrect username/security code entered\n");
+    }
+    else if((strcmp(username,"Anushka")==0) || (strcmp(username,"anushka"))==0)
+    {
+    if(seccode==arrSec[7])
+    {
+    printf("***** Welcome Anushka *****\n");
+    billingsystem();
+    }
+    else
+    printf("Incorrect username/security code entered\n");
+    }
+    else if((strcmp(username,"Pranay")==0) || (strcmp(username,"pranay"))==0)
+    {
+    if(seccode==arrSec[8])
+    {
+    printf("***** Welcome Pranay *****\n");
+    billingsystem();
+    }
+    else
+    printf("Incorrect username/security code entered\n");
+    }
+    else if((strcmp(username,"Benisha")==0) || (strcmp(username,"benisha"))==0)
+    {
+    if(seccode==arrSec[9])
+    {
+    printf("***** Welcome Benisha *****\n");
+    billingsystem();
+    }
+    else
+    printf("Incorrect username/security code entered\n");
+    }
+    else
+    printf("Incorrect username/security code entered\n");
+   
+    return 0;
+}
+
+void billingsystem()
+{
+    int cnt,temp,amt;   //cnt variable stores  the bill details in the structure index wise, temp and amt are used to check and compute the final bill amount
+    int electric,internet,talk,gas,water;  //special int variables used when combined bill has to be     generated
+    struct bill cn[100],com[100],pn[100],cid[100],cnsmd[100],billval[100];
+    int temp1,temp2,temp3,temp4,temp5;  //special int variables used when combined bill has to be     generated
+
+    char a;
+    do{
+    int choice1;
+    printf("1. Generate Electricity Bill\n2. Generate Internet Bill\n3. Generate Telecomm Bill\n4. Generate Gas Bill\n5. Generate Water Bill\n6. Generate a Combined Services Bill\n7. Exit Program\n");
+    scanf("%d",&choice1);   //Storing the user’s bill choice 
+   
+    switch(choice1)  //switch case to calculate bill
+    {
+        case 1:
+        printf("Enter the customer's name\n");
+        scanf("%s",cn[cnt].customername);
+        printf("Enter the phone number\n");
+        scanf("%ld",&pn[cnt].phoneno);
+        printf("Enter the customer ID\n");
+        scanf("%ld",&cid[cnt].customerid);
+        printf("Enter the units of electricity consumed\n");
+        scanf("%d",&cnsmd[cnt].consumed);
+        temp=cnsmd[cnt].consumed;   //calculating the bill
+        if(temp>0 && temp<100)
+        amt=temp*0.50;
+        else if(temp>100 && temp<200)
+        amt=(100*0.50)+((temp-100)*0.40);
+        else if(temp>200 && temp<300)
+        amt=(100*0.50)+(100*0.40)+((temp-200)*0.30);
+        else if(temp>300 && temp<400)
+        amt=(100*0.50)+(100*0.40)+(100*0.30)+((temp-300)*0.20);
+        else
+        amt=(100*0.50)+(100*0.40)+(100*0.30)+(100*0.20)+((temp-400)*0.20);
+        billval[cnt].bill=amt;
+        printf("\n \n");  //printing the bill
+        printf("$$$$$ %s's Electricity Bill $$$$$\n",cn[cnt].customername);
+        printf("Name: %s\n",cn[cnt].customername);
+        printf("Phone Number: %ld\n",pn[cnt].phoneno);
+        printf("Customer ID: %ld\n",cid[cnt].customerid);
+        printf("Units Consumed: %d kW\n",cnsmd[cnt].consumed);
+        printf("Final Bill Amount: Rs.%d\n",amt);
+        printf("Bill due on 14th February 2022\n");
+        printf("\n \n");
+        cnt++;
+        break;
+       
+        case 2:
+        printf("Enter the customer's name\n");
+        scanf("%s",cn[cnt].customername);
+        printf("Enter the phone number\n");
+        scanf("%ld",&pn[cnt].phoneno);
+        printf("Enter the customer ID\n");
+        scanf("%ld",&cid[cnt].customerid);
+        printf("Enter the amount of data consumed in gigabytes\n");
+        scanf("%d",&cnsmd[cnt].consumed);
+        temp=cnsmd[cnt].consumed;
+        if(temp>0 && temp<100)
+        amt=temp*10;
+        else if(temp>100 && temp<200)
+        amt=(100*10)+((temp-100)*8);
+        else if(temp>200 && temp<300)
+        amt=(100*10)+(100*8)+((temp-200)*6);
+        else if(temp>300 && temp<400)
+        amt=(100*10)+(100*8)+(100*6)+((temp-300)*5);
+        else
+        amt=(100*10)+(100*8)+(100*6)+(100*5)+((temp-400)*4.5);
+        billval[cnt].bill=amt;
+        printf("\n \n");
+        printf("$$$$$ %s's Internet Bill $$$$$\n",cn[cnt].customername);
+        printf("Name: %s\n",cn[cnt].customername);
+        printf("Phone Number: %ld\n",pn[cnt].phoneno);
+        printf("Customer ID: %ld\n",cid[cnt].customerid);
+        printf("Data Consumed: %d GB\n",cnsmd[cnt].consumed);
+        printf("Final Bill Amount: Rs.%d\n",amt);
+        printf("Bill due on 14th February 2022\n");
+        printf("\n \n");
+        cnt++;
+       
+        break;
+       
+        case 3:
+        printf("Enter the customer's name\n");
+        scanf("%s",cn[cnt].customername);
+        printf("Enter the phone number\n");
+        scanf("%ld",&pn[cnt].phoneno);
+        printf("Enter the customer ID\n");
+        scanf("%ld",&cid[cnt].customerid);
+        printf("Enter the total talktime(in minutes)\n");
+        scanf("%d",&cnsmd[cnt].consumed);
+        temp=cnsmd[cnt].consumed;
+        if(temp>0 && temp<=500)
+        amt=temp*1;
+        else if(temp>500 && temp<=1000)
+        amt=(500*1)+((temp-500)*0.8);
+        else
+        amt=(500*1)+(500*0.8)+((temp-1000)*0.6);
+        billval[cnt].bill=amt;
+        printf("\n \n");
+        printf("$$$$$ %s's Telecomm Bill $$$$$\n",cn[cnt].customername);
+        printf("Name: %s\n",cn[cnt].customername);
+        printf("Phone Number: %ld\n",pn[cnt].phoneno);
+        printf("Customer ID: %ld\n",cid[cnt].customerid);
+        printf("Talktime: %d Minutes\n",cnsmd[cnt].consumed);
+        printf("Final Bill Amount: Rs.%d\n",amt);
+        printf("Bill due on 14th February 2022\n");
+        printf("\n \n");
+        cnt++;
+       
+        break;
+       
+        case 4:
+        printf("Enter the customer's name\n");
+        scanf("%s",cn[cnt].customername);
+        printf("Enter the phone number\n");
+        scanf("%ld",&pn[cnt].phoneno);
+        printf("Enter the customer ID\n");
+        scanf("%ld",&cid[cnt].customerid);
+        printf("Enter the volume of gas utilised(in cubic metres)\n");
+        scanf("%d",&cnsmd[cnt].consumed);
+        temp=cnsmd[cnt].consumed;
+        if(temp>0 && temp<=5)
+        amt=temp*25;
+        else if(temp>5 && temp<=10)
+        amt=(5*25)+((temp-5)*50);
+        else
+        amt=(5*25)+(5*50)+((temp-10)*75);
+        billval[cnt].bill=amt;
+        printf("\n \n");
+        printf("$$$$$ %s's Gas Bill $$$$$\n",cn[cnt].customername);
+        printf("Name: %s\n",cn[cnt].customername);
+        printf("Phone Number: %ld\n",pn[cnt].phoneno);
+        printf("Customer ID: %ld\n",cid[cnt].customerid);
+        printf("Volume consumed: %d Cubic Metres\n",cnsmd[cnt].consumed);
+        printf("Final Bill Amount: Rs.%d\n",amt);
+        printf("Bill due on 14th February 2022\n");
+        printf("\n \n");
+        cnt++;
+       
+        break;
+       
+        case 5:
+        printf("Enter the customer's name\n");
+        scanf("%s",cn[cnt].customername);
+        printf("Enter the phone number\n");
+        scanf("%ld",&pn[cnt].phoneno);
+        printf("Enter the customer ID\n");
+        scanf("%ld",&cid[cnt].customerid);
+        printf("Enter the volume of water utilised(in litres)\n");
+        scanf("%d",&cnsmd[cnt].consumed);
+        temp=cnsmd[cnt].consumed;
+        if(temp>0 && temp<=100)
+        amt=temp*18;
+        else if(temp>100 && temp<=200)
+        amt=(100*18)+((temp-100)*36);
+        else 
+        amt=(100*18)+(100*36)+((temp-200)*54);
+        billval[cnt].bill=amt;
+        printf("\n \n");
+        printf("$$$$$ %s's Water Bill $$$$$\n",cn[cnt].customername);
+        printf("Name: %s\n",cn[cnt].customername);
+        printf("Phone Number: %ld\n",pn[cnt].phoneno);
+        printf("Customer ID: %ld\n",cid[cnt].customerid);
+        printf("Volume of water consumed: %d Litres\n",cnsmd[cnt].consumed);
+        printf("Final Bill Amount: Rs.%d\n",amt);
+        printf("Bill due on 14th February 2022\n");
+        printf("\n \n");
+        cnt++;
+       
+        break;
+       
+        case 6:
+        printf("Enter the customer's name\n");
+        scanf("%s",cn[cnt].customername);
+        printf("Enter the phone number\n");
+        scanf("%ld",&pn[cnt].phoneno);
+        printf("Enter the customer ID\n");
+        scanf("%ld",&cid[cnt].customerid);
+        
+        printf("Enter the units of electricity consumed\n");
+        scanf("%d",&temp1);
+        {
+        if(temp1>0 && temp1<100)
+        electric=temp1*0.50;
+        else if(temp1>100 && temp1<200)
+        electric=(100*0.50)+((temp1-100)*0.40);
+        else if(temp1>200 && temp1<300)
+        electric=(100*0.50)+(100*0.40)+((temp1-200)*0.30);
+        else if(temp1>300 && temp1<400)
+        electric=(100*0.50)+(100*0.40)+(100*0.30)+((temp1-300)*0.20);
+        else
+        electric=(100*0.50)+(100*0.40)+(100*0.30)+(100*0.20)+((temp1-400)*0.20);
+        }
+        
+        printf("Enter the amount of data consumed in gigabytes\n");
+        scanf("%d",&temp2);
+        {
+        if(temp2>0 && temp2<100)
+        internet=temp2*10;
+        else if(temp2>100 && temp2<200)
+        internet=(100*10)+((temp2-100)*8);
+        else if(temp2>200 && temp2<300)
+        internet=(100*10)+(100*8)+((temp2-200)*6);
+        else if(temp2>300 && temp2<400)
+        internet=(100*10)+(100*8)+(100*6)+((temp2-300)*5);
+        else
+        internet=(100*10)+(100*8)+(100*6)+(100*5)+((temp2-400)*4.5);
+        }
+        
+        printf("Enter the total talktime(in minutes)\n");
+        scanf("%d",&temp3);
+        {
+        if(temp3>0 && temp3<=500)
+        talk=temp3*1;
+        else if(temp3>500 && temp3<=1000)
+        talk=(500*1)+((temp3-500)*0.8);
+        else
+        talk=(500*1)+(500*0.8)+((temp3-1000)*0.6);
+        }
+        
+        printf("Enter the volume of gas utilised(in cubic metres)\n");
+        scanf("%d",&temp4);
+        {
+        if(temp4>0 && temp4<=5)
+        gas=temp4*25;
+        else if(temp4>5 && temp4<=10)
+        gas=(5*25)+((temp4-5)*50);
+        else
+        gas=(5*25)+(5*50)+((temp4-10)*75);
+        }
+        
+        printf("Enter the volume of water utilised(in litres)\n");
+        scanf("%d",&temp5);
+        {
+        if(temp5>0 && temp5<=100)
+        water=temp5*18;
+        else if(temp5>100 && temp5<=200)
+        water=(100*18)+((temp5-100)*36);
+        else 
+        water=(100*18)+(100*36)+((temp5-200)*54);
+        }
+        
+        amt=electric+internet+talk+gas+water;
+        billval[cnt].bill=amt;
+        printf("\n \n");
+        printf("$$$$$ %s's Combined Bill $$$$$\n",cn[cnt].customername);
+        printf("Name: %s\n",cn[cnt].customername);
+        printf("Phone Number: %ld\n",pn[cnt].phoneno);
+        printf("Customer ID: %ld\n",cid[cnt].customerid);
+        printf("Units of Electricty Consumed: %d kW\n",temp1);
+        printf("Data Consumed: %d GB\n",temp2);
+        printf("Talktime: %d Minutes\n",temp3);
+        printf("Volume of Gas consumed: %d Cubic Metres\n",temp4);
+        printf("Volume of water consumed: %d Litres\n",temp5);
+        printf("Final Bill Amount: Rs.%d\n",amt);
+        printf("Bill due on 14th February 2022\n");
+        printf("\n \n");
+        cnt++;
+        
+        break;
+       
+        case 7:
+        printf("*** Thank you! ***");
+        exit(0);
+       
+    }
+    printf("Would you like to continue?\n");   //user is asked if they would like to continue
+    printf("Enter y/n\n ");
+    scanf(" %c",&a);
+    if(a=='n' || a=='N')   //if n is entered, program is terminated.
+    printf("*** Thank you! ***");
+    }while(a=='Y' || a=='y');   //if y is entered, control goes back to the while loop
+}
